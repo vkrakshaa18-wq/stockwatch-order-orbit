@@ -28,3 +28,6 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+- Stock changes go only through DB functions (adjust_stock, create_order, set_order_status) so quantity and inventory_transactions stay in sync; never update products.quantity directly from the client.
+- App data is per-user (user_id default auth.uid(), RLS own-rows); pages under src/routes/_authenticated read via react-query options in src/lib/data.ts.
